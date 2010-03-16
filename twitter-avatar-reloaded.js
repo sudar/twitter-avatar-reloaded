@@ -7,6 +7,5 @@
  */
 
 jQuery(document).ready(function () {
-	jQuery('label[for="url"],#url').filter(':last').after(jQuery('#ta_twitter'));
+	jQuery('label[for="url"]').parent('p').after(jQuery('#ta_twitter'));
 });
-

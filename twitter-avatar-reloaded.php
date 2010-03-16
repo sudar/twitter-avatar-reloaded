@@ -4,12 +4,13 @@ Plugin Name: Twitter Avatar Reloaded
 Plugin URI: http://sudarmuthu.com/wordpress/twitter-avatar-reloaded
 Description: Stores Twitter username together with comments and replaces gravatar with twitter avatar.
 Author: Sudar
-Version: 0.1
+Version: 0.2
 Author URI: http://sudarmuthu.com/
 Text Domain: twitter-avatar-reloaded
 
 === RELEASE NOTES ===
 2010-03-13 - v0.1 - Initial Release
+2010-03-16 - v0.2 - Proper alignment of the Twitter username field
 
 /*  Copyright 2009  Sudar Muthu  (email : sudar@sudarmuthu.com)
 
@@ -62,8 +63,8 @@ class TwitterAvatarReloaded {
         // Enqueue the script
         add_action('template_redirect', array(&$this, 'add_script'));
 
-        $plugin = plugin_basename(__FILE__);
-        add_filter("plugin_action_links_$plugin", array(&$this, 'add_action_links'));
+//        $plugin = plugin_basename(__FILE__);
+//        add_filter("plugin_action_links_$plugin", array(&$this, 'add_action_links'));
 
     }
 
@@ -104,12 +105,12 @@ class TwitterAvatarReloaded {
 
         if (comments_open() && !is_user_logged_in() && isset($wp_scripts) && $wp_scripts->query('ta')) {
 ?>
-            <span id="ta_twitter" style="display:block">
-                <label>
-                        <input type="textbox" id="ta_twitter_field" name="ta_twitter_field" value="<?php echo esc_attr($_COOKIE['comment_author_twitter' . COOKIEHASH]); ?>" />
-                        <?php _e('Twitter', 'twitter-avatar-reloaded'); ?>
+            <p id="ta_twitter" style="display:block">
+                <input type="textbox" id="ta_twitter_field" class="textbox" tabindex="4" size="30" name="ta_twitter_field" value="<?php echo esc_attr($_COOKIE['comment_author_twitter' . COOKIEHASH]); ?>" />
+                <label for="ta_twitter_field">
+                    <?php _e('Twitter', 'twitter-avatar-reloaded'); ?>
                 </label>
-            </span>
+            </p>
 <?php
         }
     }

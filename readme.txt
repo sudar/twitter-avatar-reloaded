@@ -3,7 +3,7 @@ Contributors: sudar
 Tags: twitter, gravatar, avatar
 Requires at least: 2.9
 Tested up to: 2.9.2
-Stable tag: 0.1
+Stable tag: 0.2
 
 Stores Twitter username together with comments and replaces gravatar with twitter avatar.
 
@@ -26,11 +26,19 @@ Support for the Plugin is available from the [Plugin's home page][1]. If you hav
 
 Extract the zip file and just drop the contents in the wp-content/plugins/ directory of your WordPress installation and then activate the Plugin from Plugins page.
 
+== Screenshots ==
+
+1. Comment form with the new Twitter Field
+
 == Changelog ==
 
 ###v0.1 (2010-03-13)
 
 *   first version
+
+###v0.2 (2010-03-16)
+
+*   Proper alignment of the Twitter Username field
 
 ==Readme Generator== 
 
