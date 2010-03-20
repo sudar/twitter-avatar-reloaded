@@ -11,6 +11,7 @@ Text Domain: twitter-avatar-reloaded
 === RELEASE NOTES ===
 2010-03-13 - v0.1 - Initial Release
 2010-03-16 - v0.2 - Proper alignment of the Twitter username field
+2010-03-16 - v0.2 - Added translation for Hebrew (Thanks Sagive)
 
 /*  Copyright 2009  Sudar Muthu  (email : sudar@sudarmuthu.com)
 
