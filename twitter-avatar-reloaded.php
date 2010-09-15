@@ -4,14 +4,16 @@ Plugin Name: Twitter Avatar Reloaded
 Plugin URI: http://sudarmuthu.com/wordpress/twitter-avatar-reloaded
 Description: Stores Twitter username together with comments and replaces gravatar with twitter avatar.
 Author: Sudar
-Version: 0.2
+Version: 0.5
 Author URI: http://sudarmuthu.com/
 Text Domain: twitter-avatar-reloaded
 
 === RELEASE NOTES ===
 2010-03-13 - v0.1 - Initial Release
 2010-03-16 - v0.2 - Proper alignment of the Twitter username field
-2010-03-16 - v0.2 - Added translation for Hebrew (Thanks Sagive)
+2010-03-16 - v0.3 - Added translation for Hebrew (Thanks Sagive)
+2010-08-09 - v0.4 - Removed JavaScript from unncessary pages.
+2010-08-10 - v0.5 - Added support for registered users and added option to specify Twitter field label.
 
 /*  Copyright 2009  Sudar Muthu  (email : sudar@sudarmuthu.com)
 
@@ -51,8 +53,16 @@ class TwitterAvatarReloaded {
         load_plugin_textdomain( 'twitter-avatar-reloaded', false, dirname(plugin_basename(__FILE__)) . '/languages' );
 
         // Register hooks
+
+        // Settings hooks
+        add_action( 'admin_menu', array(&$this, 'register_settings_page') );
+        add_action( 'admin_init', array(&$this, 'add_settings') );
+
         // Display twitter textbox in the comment form
         add_action('comment_form', array(&$this, 'add_twitter_field'), 9);
+
+        // Display Twitter field in user's profile page
+        add_filter('user_contactmethods', array(&$this, 'add_contactmethods'), 10, 1);
 
         // Save the twitter field
         // priority is very low (50) because we want to let anti-spam plugins have their way first.
@@ -60,41 +70,70 @@ class TwitterAvatarReloaded {
 
         //hook the show gravatar function
         add_filter('get_avatar', array(&$this, 'change_avatar'), 10, 5);
+        add_filter('get_avatar_comment_types', array(&$this, 'add_avatar_types'));
 
         // Enqueue the script
         add_action('template_redirect', array(&$this, 'add_script'));
 
-//        $plugin = plugin_basename(__FILE__);
-//        add_filter("plugin_action_links_$plugin", array(&$this, 'add_action_links'));
+        // add action links
+        $plugin = plugin_basename(__FILE__);
+        add_filter("plugin_action_links_$plugin", array(&$this, 'add_action_links'));
 
     }
 
     /**
-     * Enqueue the Retweet script
+     * Register the settings page
+     */
+    function register_settings_page() {
+        add_options_page( __('Twitter Avatar Reloaded', 'twitter-avatar-reloaded'), __('Twitter Avatar Reloaded', 'twitter-avatar-reloaded'), 8, 'twitter-avatar-reloaded', array(&$this, 'settings_page') );
+    }
+
+    /**
+     * add options
+     */
+    function add_settings() {
+        // Register options
+        register_setting( 'twitter-avatar-reloaded-options', 'twitter-avatar-reloaded-options', array(&$this, 'validate_settings'));
+
+        //Global Options section
+        add_settings_section('gr_global_section', __('Settings', 'twitter-avatar-reloaded'), array(&$this, 'tar_global_section_text'), __FILE__);
+        add_settings_field('field-label', __('Twitter Field Label', 'twitter-avatar-reloaded'), array(&$this, 'tar_field_label_callback'), __FILE__, 'gr_global_section');
+
+    }
+
+    /**
+     * Enqueue JavaScript
      */
     function add_script() {
-        // Enqueue the script
-        wp_enqueue_script('ta', plugin_dir_url(__FILE__) . 'twitter-avatar-reloaded.js', array('jquery'), '0.1', true);
+        // Enqueue the script on single page/post
+        if (is_singular()) {
+            wp_enqueue_script('ta', plugin_dir_url(__FILE__) . 'twitter-avatar-reloaded.js', array('jquery'), '0.1', true);
+        }
     }
 
     /**
-     * hook to add action links
-     * @param <type> $links
+     * Add another contact field to the user profile page
+     *
+     * @param array $contactmethods
+     * @return array
+     */
+    function add_contactmethods( $contactmethods ) {
+        // Add Twitter
+        $contactmethods['twitter'] = __('Twitter Username', 'twitter-avatar-reloaded');
+        return $contactmethods;
+    }
+
+    /**
+     * Add Tweetbacks to the allowed avatar types
+     * For Tweetbacks and Tweetback Helper functions
+     *
+     * @param <type> $avatar_types
      * @return <type>
      */
-    function add_action_links( $links ) {
-        // Add a link to this plugin's settings page
-        $settings_link = '<a href="options-general.php?page=twitter-avatar-reloaded">' . __("Settings", 'twitter-avatar-reloaded') . '</a>';
-        array_unshift( $links, $settings_link );
-        return $links;
-    }
-
-    /**
-     * Adds Footer links. Based on http://striderweb.com/nerdaphernalia/2008/06/give-your-wordpress-plugin-credit/
-     */
-    function add_footer_links() {
-        $plugin_data = get_plugin_data( __FILE__ );
-        printf('%1$s ' . __("plugin", 'twitter-avatar-reloaded') .' | ' . __("Version", 'twitter-avatar-reloaded') . ' %2$s | '. __('by', 'twitter-avatar-reloaded') . ' %3$s<br />', $plugin_data['Title'], $plugin_data['Version'], $plugin_data['Author']);
+    function add_avatar_types( $avatar_types ) {
+        // Add Tweetbacks
+        $avatar_types[] = 'tweetback';
+        return $avatar_types;
     }
 
     /**
@@ -105,11 +144,18 @@ class TwitterAvatarReloaded {
         global $wp_scripts;
 
         if (comments_open() && !is_user_logged_in() && isset($wp_scripts) && $wp_scripts->query('ta')) {
+            $options = get_option('twitter-avatar-reloaded-options');
 ?>
             <p id="ta_twitter" style="display:block">
                 <input type="textbox" id="ta_twitter_field" class="textbox" tabindex="4" size="30" name="ta_twitter_field" value="<?php echo esc_attr($_COOKIE['comment_author_twitter' . COOKIEHASH]); ?>" />
                 <label for="ta_twitter_field">
-                    <?php _e('Twitter', 'twitter-avatar-reloaded'); ?>
+<?php
+                    if ($options['field-label'] != '') {
+                        echo $options['field-label'];
+                    } else {
+                        _e('Twitter', 'twitter-avatar-reloaded');
+                    }
+ ?>
                 </label>
             </p>
 <?php
@@ -135,6 +181,51 @@ class TwitterAvatarReloaded {
     }
 
     /**
+     * hook to add action links
+     * @param <type> $links
+     * @return <type>
+     */
+    function add_action_links( $links ) {
+        // Add a link to this plugin's settings page
+        $settings_link = '<a href="options-general.php?page=twitter-avatar-reloaded">' . __("Settings", 'twitter-avatar-reloaded') . '</a>';
+        array_unshift( $links, $settings_link );
+        return $links;
+    }
+
+    /**
+     * Adds Footer links.
+     *
+     * Based on http://striderweb.com/nerdaphernalia/2008/06/give-your-wordpress-plugin-credit/
+     */
+    function add_footer_links() {
+        $plugin_data = get_plugin_data( __FILE__ );
+        printf('%1$s ' . __("plugin", 'twitter-avatar-reloaded') .' | ' . __("Version", 'twitter-avatar-reloaded') . ' %2$s | '. __('by', 'twitter-avatar-reloaded') . ' %3$s<br />', $plugin_data['Title'], $plugin_data['Version'], $plugin_data['Author']);
+    }
+
+    /**
+     * Dipslay the Settings page
+     */
+    function settings_page() {
+?>
+        <div class="wrap">
+            <?php screen_icon(); ?>
+            <h2><?php _e( 'Twitter Avatar Reloaded Settings', 'twitter-avatar-reloaded' ); ?></h2>
+
+            <form id="smer_form" method="post" action="options.php">
+                <?php settings_fields('twitter-avatar-reloaded-options'); ?>
+        		<?php do_settings_sections(__FILE__); ?>
+
+                <p class="submit">
+                    <input type="submit" name="twitter-avatar-reloaded-submit" class="button-primary" value="<?php _e('Save Changes', 'twitter-avatar-reloaded') ?>" />
+                </p>
+            </form>
+        </div>
+<?php
+        // Display credits in Footer
+        add_action( 'in_admin_footer', array(&$this, 'add_footer_links'));
+    }
+
+    /**
      * Change the avatar
      *
      * @param <type> $avatar
@@ -144,7 +235,16 @@ class TwitterAvatarReloaded {
      * @param <type> $alt
      */
     function change_avatar($avatar, $id_or_email, $size, $default, $alt) {
-        $comment_author_twitter = get_metadata('comment', get_comment_ID(), 'comment_author_twitter', true);
+
+        $comment_author_twitter = '';
+        $comment = get_comment(get_comment_ID());
+        if ($comment->user_id) {
+            $user_profile = get_userdata($comment->user_id);
+            $comment_author_twitter = $user_profile->twitter;
+        } else {
+            $comment_author_twitter = get_metadata('comment', get_comment_ID(), 'comment_author_twitter', true);
+        }
+        
         $comment_author_twitter = str_ireplace('http://twitter.com/', '', $comment_author_twitter);
 
         $t = new twitterImage($comment_author_twitter, $default); //create instance of the class and pass the username
@@ -159,6 +259,36 @@ class TwitterAvatarReloaded {
             $avatar = "<img alt='{$safe_alt}' src='{$image_url}' class='avatar avatar-{$size} photo avatar-default' height='{$size}' width='{$size}' />";
         }
         return $avatar;
+    }
+
+    // ---------------------------Callback functions ----------------------------------------------------------
+
+    /**
+     * Validate the options entered by the user
+     *
+     * @param <type> $input
+     * @return <type>
+     */
+    function validate_settings($input) {
+        $input['field-label'] = esc_attr($input['field-label']);
+        if ($input['field-label'] == '') {
+            $input['field-label'] = 'Twitter';
+        }
+        return $input;
+    }
+
+    /**
+     * Print global section text
+     */
+    function  tar_global_section_text() {
+    }
+
+    /**
+     * Callback for printing Field label Setting
+     */
+    function tar_field_label_callback() {
+        $options = get_option('twitter-avatar-reloaded-options');
+        echo "<input id='field-label' name='twitter-avatar-reloaded-options[field-label]' size='40' type='text' value='{$options['field-label']}' />";
     }
 
     // PHP4 compatibility
@@ -256,12 +386,12 @@ class TwitterImage {
      *
      */
     private function get_data($url) {
-        $response = wp_cache_get($url, 'rolopress');
+        $response = wp_cache_get($url, 'twitter-avatar');
         if ($response == false) {
             // if it is not present in cache, make the request
             $response = wp_remote_request($url);
             // set the response in cache
-            wp_cache_add($url, $response, 'rolopress');
+            wp_cache_add($url, $response, 'twitter-avatar');
         }
         
         if (is_a($response, 'WP_Error')) {
