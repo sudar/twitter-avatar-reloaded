@@ -26,13 +26,13 @@ Support for the Plugin is available from the [Plugin's home page][1]. If you hav
 
 ### Links
 
-*   [Plugin home page] [1]
-*   [Author's Blog] [2]
-*   [Other Plugins by the author] [3]
+*   [Plugin home page][1]
+*   [Author's Blog][2]
+*   [Other Plugins by the author][3]
 
-[1] - http://sudarmuthu.com/wordpress/twitter-avatar-reloaded
-[2] - http://sudarmuthu.com/blog
-[3] - http://sudarmuthu.com/wordpress/
+[1]: http://sudarmuthu.com/wordpress/twitter-avatar-reloaded
+[2]: http://sudarmuthu.com/blog
+[3]: http://sudarmuthu.com/wordpress/
 
 == Installation ==
 
