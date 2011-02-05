@@ -2,8 +2,9 @@
 Contributors: sudar 
 Tags: twitter, gravatar, avatar
 Requires at least: 2.9
-Tested up to: 3.0.1
-Stable tag: 0.5
+Donate Link: http://sudarmuthu.com/if-you-wanna-thank-me
+Tested up to: 3.0.4
+Stable tag: 0.6
 
 Stores Twitter username together with comments and replaces gravatar with twitter avatar.
 
@@ -15,14 +16,14 @@ This Plugin works seamlessly and you don't need to edit your theme files to add 
 ### Translation
 
 *   Hebrew (Thanks Sagive)
+*   Dutch (Thanks Rene of [WordPress WPwebshop][4])
+*   Brazilian Portuguese (Thanks [Marcelo][5])
 
 The pot file is available with the Plugin. If you are willing to do translation for the Plugin, use the pot file to create the .po files for your language and let me know. I will add it to the Plugin after giving credit to you.
 
 ### Support
 
 Support for the Plugin is available from the [Plugin's home page][1]. If you have any questions or suggestions, do leave a comment there.
-
- [1]: http://sudarmuthu.com/wordpress/twitter-avatar-reloaded
 
 ### Links
 
@@ -33,6 +34,8 @@ Support for the Plugin is available from the [Plugin's home page][1]. If you hav
 [1]: http://sudarmuthu.com/wordpress/twitter-avatar-reloaded
 [2]: http://sudarmuthu.com/blog
 [3]: http://sudarmuthu.com/wordpress/
+[4]: http://wpwebshop.com/premium-wordpress-plugins/
+[5]: http://www.techload.com.br/
 
 == Installation ==
 
@@ -64,6 +67,11 @@ Extract the zip file and just drop the contents in the wp-content/plugins/ direc
 
 *   Added support for registered users
 *   Ability to configure Twitter field label.
+
+###v0.5 (2011-02-05)
+
+*   Added Dutch translations
+*   Added Brazilian Portuguese translations
 
 ==Readme Generator== 
 

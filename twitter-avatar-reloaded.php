@@ -4,7 +4,8 @@ Plugin Name: Twitter Avatar Reloaded
 Plugin URI: http://sudarmuthu.com/wordpress/twitter-avatar-reloaded
 Description: Stores Twitter username together with comments and replaces gravatar with twitter avatar.
 Author: Sudar
-Version: 0.5
+Donate Link: http://sudarmuthu.com/if-you-wanna-thank-me
+Version: 0.6
 Author URI: http://sudarmuthu.com/
 Text Domain: twitter-avatar-reloaded
 
@@ -14,6 +15,7 @@ Text Domain: twitter-avatar-reloaded
 2010-03-16 - v0.3 - Added translation for Hebrew (Thanks Sagive)
 2010-08-09 - v0.4 - Removed JavaScript from unncessary pages.
 2010-08-10 - v0.5 - Added support for registered users and added option to specify Twitter field label.
+2011-02-05 - v0.6 - Added Brazilian Portuguese and Dutch translations
 
 /*  Copyright 2009  Sudar Muthu  (email : sudar@sudarmuthu.com)
 
@@ -219,6 +221,17 @@ class TwitterAvatarReloaded {
                     <input type="submit" name="twitter-avatar-reloaded-submit" class="button-primary" value="<?php _e('Save Changes', 'twitter-avatar-reloaded') ?>" />
                 </p>
             </form>
+
+            <h3><?php _e('Support', 'twitter-avatar-reloaded'); ?></h3>
+            <p><?php _e('If you have any questions/comments/feedback about the Plugin then post a comment in the <a target="_blank" href = "http://sudarmuthu.com/wordpress/twitter-avatar-reloaded">Plugins homepage</a>.','twitter-avatar-reloaded'); ?></p>
+            <p><?php _e('If you like the Plugin, then consider doing one of the following.', 'twitter-avatar-reloaded'); ?></p>
+            <ul style="list-style:disc inside">
+                <li><?php _e('Write a blog post about the Plugin.', 'twitter-avatar-reloaded'); ?></li>
+                <li><a href="http://twitter.com/share" class="twitter-share-button" data-url="http://sudarmuthu.com/wordpress/twitter-avatar-reloaded" data-text="Twitter Avatar Reloaded WordPress Plugin" data-count="none" data-via="sudarmuthu">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script><?php _e(' about it.', 'twitter-avatar-reloaded'); ?></li>
+                <li><?php _e('Give a <a href = "http://wordpress.org/extend/plugins/twitter-avatar-reloaded/" target="_blank">good rating</a>.', 'twitter-avatar-reloaded'); ?></li>
+                <li><?php _e('Say <a href = "http://sudarmuthu.com/if-you-wanna-thank-me" target="_blank">thank you</a>.', 'twitter-avatar-reloaded'); ?></li>
+            </ul>
+
         </div>
 <?php
         // Display credits in Footer
