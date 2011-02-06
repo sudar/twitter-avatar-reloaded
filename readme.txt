@@ -17,13 +17,13 @@ This Plugin works seamlessly and you don't need to edit your theme files to add 
 
 *   Hebrew (Thanks Sagive)
 *   Dutch (Thanks Rene of [WordPress WPwebshop][4])
-*   Brazilian Portuguese (Thanks Marcelo of [Criação de Sites em Ribeirão Preto][5])
+*   Brazilian Portuguese (Thanks Marcelo of [Criacao de Sites em Ribeirao Preto][5])
 
 The pot file is available with the Plugin. If you are willing to do translation for the Plugin, use the pot file to create the .po files for your language and let me know. I will add it to the Plugin after giving credit to you.
 
 ### Support
 
-Support for the Plugin is available from the [Plugin's home page][1]. If you have any questions or suggestions, do leave a comment there.
+Support for the Plugin is available from the [Plugin's home page][1]. If you have any questions or suggestions, do leave a comment there or contact me in [twitter][6].
 
 ### Links
 
@@ -36,6 +36,7 @@ Support for the Plugin is available from the [Plugin's home page][1]. If you hav
 [3]: http://sudarmuthu.com/wordpress/
 [4]: http://wpwebshop.com/premium-wordpress-plugins/
 [5]: http://www.techload.com.br/
+[6]: http://twitter.com/sudarmuthu
 
 == Installation ==
 
