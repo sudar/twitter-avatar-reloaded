@@ -5,7 +5,7 @@ Plugin URI: http://sudarmuthu.com/wordpress/twitter-avatar-reloaded
 Description: Stores Twitter username together with comments and replaces gravatar with twitter avatar.
 Author: Sudar
 Donate Link: http://sudarmuthu.com/if-you-wanna-thank-me
-Version: 0.6
+Version: 0.7
 Author URI: http://sudarmuthu.com/
 Text Domain: twitter-avatar-reloaded
 
@@ -16,6 +16,7 @@ Text Domain: twitter-avatar-reloaded
 2010-08-09 - v0.4 - Removed JavaScript from unncessary pages.
 2010-08-10 - v0.5 - Added support for registered users and added option to specify Twitter field label.
 2011-02-05 - v0.6 - Added Brazilian Portuguese and Dutch translations
+2011-05-11 - v0.7 - Added template functions to display Comment author twitter id and profile url
 
 /*  Copyright 2009  Sudar Muthu  (email : sudar@sudarmuthu.com)
 
@@ -418,5 +419,60 @@ class TwitterImage {
     function TwitterImage() {
         $this->__construct();
     }
+}
+
+// ---------------------------Template functions ----------------------------------------------------------
+
+/**
+ * Get the Twitter id of the comment author
+ *
+ * @param <int> $comment_ID - ID of the comment - Optional
+ * @return <string> - Comment author Twitter id
+ */
+function get_comment_author_twitter_id( $comment_ID = 0 ) {
+	$comment = get_comment( $comment_ID );
+
+    if ($comment->user_id) {
+        $user_profile = get_userdata($comment->user_id);
+        $comment_author_twitter = $user_profile->twitter;
+    } else {
+        $comment_author_twitter = get_metadata('comment', $comment->comment_ID, 'comment_author_twitter', true);
+    }
+
+    $comment_author_twitter = str_ireplace('http://twitter.com/', '', $comment_author_twitter);
+
+	return apply_filters( 'get_comment_author_twitter_id', $comment_author_twitter, $comment );
+}
+
+/**
+ * Print the Twitter id of the comment author
+ * 
+ * @param <int> $comment_ID - ID of the comment - Optional
+ */
+function comment_author_twitter_id( $comment_ID = 0 ) {
+    $comment = get_comment( $comment_ID );
+	echo apply_filters('comment_author_twitter_id', get_comment_author_twitter_id($comment_ID), $comment);
+}
+
+/**
+ * Get the Twitter profile url of the comment author
+ *
+ * @param <int> $comment_ID - ID of the comment - Optional
+ * @return <string> - Comment author Twitter profile url
+ */
+function get_comment_author_twitter_url( $comment_ID = 0 ) {
+    $comment = get_comment( $comment_ID );
+	$comment_author_twitter_url = 'http://twitter.com/' . get_comment_author_twitter_id($comment_ID);
+	return apply_filters( 'get_comment_author_twitter_url', $comment_author_twitter_url, $comment );
+}
+
+/**
+ * Print the Twitter url of the comment author
+ *
+ * @param <int> $comment_ID - ID of the comment - Optional
+ */
+function comment_author_twitter_url( $comment_ID = 0 ) {
+    $comment = get_comment( $comment_ID );
+	echo apply_filters('comment_author_twitter_url', get_comment_author_twitter_url($comment_ID), $comment );
 }
 ?>
