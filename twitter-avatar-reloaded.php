@@ -5,7 +5,7 @@ Plugin URI: http://sudarmuthu.com/wordpress/twitter-avatar-reloaded
 Description: Stores Twitter username together with comments and replaces gravatar with twitter avatar.
 Author: Sudar
 Donate Link: http://sudarmuthu.com/if-you-wanna-thank-me
-Version: 0.7
+Version: 0.8
 Author URI: http://sudarmuthu.com/
 Text Domain: twitter-avatar-reloaded
 
@@ -17,6 +17,7 @@ Text Domain: twitter-avatar-reloaded
 2010-08-10 - v0.5 - Added support for registered users and added option to specify Twitter field label.
 2011-02-05 - v0.6 - Added Brazilian Portuguese and Dutch translations
 2011-05-11 - v0.7 - Added template functions to display Comment author twitter id and profile url
+2011-05-22 - v0.8 - Added German Translations
 
 /*  Copyright 2009  Sudar Muthu  (email : sudar@sudarmuthu.com)
 
