@@ -3,8 +3,8 @@ Contributors: sudar
 Tags: twitter, gravatar, avatar
 Requires at least: 2.9
 Donate Link: http://sudarmuthu.com/if-you-wanna-thank-me
-Tested up to: 3.1.2
-Stable tag: 0.8
+Tested up to: 3.2.1
+Stable tag: 1.2
 
 Stores Twitter username together with comments and replaces gravatar with twitter avatar.
 
@@ -28,6 +28,8 @@ This Plugin provides 4 template functions which you can use in your theme to cus
 *   Dutch (Thanks Rene of [WordPress WPwebshop][4])
 *   Brazilian Portuguese (Thanks Marcelo of [Criacao de Sites em Ribeirao Preto][5])
 *   German (Thanks Jenny Beelens of [professionaltranslation.com][7])
+*   Spanish (Thanks Brian Flores of [InMotion Hosting][8])   
+*   Bulgarian (Thanks Nikolay Nikolov of [Health Blog][9])   
 
 The pot file is available with the Plugin. If you are willing to do translation for the Plugin, use the pot file to create the .po files for your language and let me know. I will add it to the Plugin after giving credit to you.
 
@@ -48,7 +50,9 @@ Support for the Plugin is available from the [Plugin's home page][1]. If you hav
 [5]: http://www.techload.com.br/
 [6]: http://twitter.com/sudarmuthu
 [7]: http://www.professionaltranslation.com
- 
+[8]: http://www.inmotionhosting.com/
+[9]: http://healthishblog.com/ 
+
 == Installation ==
 
 Extract the zip file and just drop the contents in the wp-content/plugins/ directory of your WordPress installation and then activate the Plugin from Plugins page.
@@ -93,6 +97,15 @@ Extract the zip file and just drop the contents in the wp-content/plugins/ direc
 
 *   Added German translations
 
-==Readme Generator== 
+###v1.0 (2011-09-11)
+*   Using transient api for storing cache and also improve performance
 
-This Readme file was generated using <a href = 'http://sudarmuthu.com/wordpress/wp-readme'>wp-readme</a>, which generates readme files for WordPress Plugins.
+###v1.1 (2011-11-13)
+*   Added French translations.
+
+###v1.2 (2012-02-05)
+*   Added Bulgarian translations.
+
+==Readme Generator==
+
+This Readme file was generated using <a href = "http://sudarmuthu.com/wordpress/wp-readme">wp-readme</a>, which generates readme files for WordPress Plugins.
