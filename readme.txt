@@ -15,7 +15,7 @@ This Plugin works seamlessly and you don't need to edit your theme files to add 
 
 ### Template functions
 
-This Plugin provides 4 template functions which you can use in your theme to customize the way the comment author's twitter id/profile should be displayed.
+This Plugin provides 7 template functions which you can use in your theme to customize the way the comment author's twitter id/profile should be displayed.
 
 *   get_comment_author_twitter_id($comment_id) - Get the Twitter id of the comment author
 *   comment_author_twitter_id($comment_id) - Print the Twitter id of the comment author
@@ -113,11 +113,11 @@ Extract the zip file and just drop the contents in the wp-content/plugins/ direc
 
 ###v1.3 (2012-04-26) (Dev time: 8 hours)
 
-    - Rewrote the way comment field was handled.
-    - Rewrote the way the Twitter profile image was retrieved.
-    - Started storing the Twitter profile image url in comment meta
-    - Revamped the admin UI
-    - Added Lithuanian translations
+- Rewrote the way comment field was handled.
+- Rewrote the way the Twitter profile image was retrieved.
+- Started storing the Twitter profile image url in comment meta
+- Revamped the admin UI
+- Added Lithuanian translations
 
 ==Readme Generator==
 
