@@ -22,11 +22,11 @@ Text Domain: twitter-avatar-reloaded
 2011-11-13 - v1.1 - Added Spanish translations.
 2012-02-04 - v1.2 - Added Bulgarian translations.
 2012-02-04 - v1.2 - Added Bulgarian translations.
-2012-04-25 - v1.3 ( hours) - Rewrote the way comment field was handled.
+2012-04-25 - v1.3 (8 hours) - Rewrote the way comment field was handled.
 				  - Rewrote the way the Twitter profile image was retrieved.
 				  - Started storing the Twitter profile image url in comment meta
 				  - Revamped the admin UI
-				  - Added Bulgarian translations
+				  - Added Lithuanian translations
 
 /*  Copyright 2009  Sudar Muthu  (email : sudar@sudarmuthu.com)
 
@@ -541,7 +541,7 @@ if (!function_exists('comment_author_twitter_url')) {
 }
 
 /**
- * Returns the twitter profile image url of a the author of a comment
+ * Returns the twitter profile image url of the comment author 
  *
  * @param <int> $comment_ID - ID of the comment - Optional
  * @param <bool> store - Whether to store the profile image url in comment meta - Optional - Default: FALSE

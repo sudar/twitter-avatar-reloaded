@@ -3,8 +3,8 @@ Contributors: sudar
 Tags: twitter, gravatar, avatar
 Requires at least: 2.9
 Donate Link: http://sudarmuthu.com/if-you-wanna-thank-me
-Tested up to: 3.2.1
-Stable tag: 1.2
+Tested up to: 3.3.2
+Stable tag: 1.3
 
 Stores Twitter username together with comments and replaces gravatar with twitter avatar.
 
@@ -17,10 +17,13 @@ This Plugin works seamlessly and you don't need to edit your theme files to add 
 
 This Plugin provides 4 template functions which you can use in your theme to customize the way the comment author's twitter id/profile should be displayed.
 
-*   get_comment_author_twitter_id() - Get the Twitter id of the comment author
-*   comment_author_twitter_id() - Print the Twitter id of the comment author
-*   get_comment_author_twitter_url() - Get the Twitter profile url of the comment author
-*   comment_author_twitter_url() - Print the Twitter url of the comment author
+*   get_comment_author_twitter_id($comment_id) - Get the Twitter id of the comment author
+*   comment_author_twitter_id($comment_id) - Print the Twitter id of the comment author
+*   get_comment_author_twitter_url($comment_id) - Get the Twitter profile url of the comment author
+*   comment_author_twitter_url($comment_id) - Print the Twitter url of the comment author
+*   get_comment_author_twitter_profile_image($comment_id) - Get the twitter profile image url of the comment author 
+*   comment_author_twitter_profile_image($comment_id) - Print the twitter profile image url of the comment author 
+*   get_twitter_profile_image($twitter_username) - Get the twitter profile image of a user using twitter id
 
 ### Translation
 
@@ -30,6 +33,7 @@ This Plugin provides 4 template functions which you can use in your theme to cus
 *   German (Thanks Jenny Beelens of [professionaltranslation.com][7])
 *   Spanish (Thanks Brian Flores of [InMotion Hosting][8])   
 *   Bulgarian (Thanks Nikolay Nikolov of [Health Blog][9])   
+*   Lithuanian (Thanks  Vincent G , from [http://www.host1free.com][10])
 
 The pot file is available with the Plugin. If you are willing to do translation for the Plugin, use the pot file to create the .po files for your language and let me know. I will add it to the Plugin after giving credit to you.
 
@@ -52,6 +56,7 @@ Support for the Plugin is available from the [Plugin's home page][1]. If you hav
 [7]: http://www.professionaltranslation.com
 [8]: http://www.inmotionhosting.com/
 [9]: http://healthishblog.com/ 
+[10]: http://www.host1free.com
 
 == Installation ==
 
@@ -77,7 +82,7 @@ Extract the zip file and just drop the contents in the wp-content/plugins/ direc
 
 ###v0.4 (2010-08-09)
 
-*   Removed JavaScript from unncessary pages.
+*   Removed JavaScript from unnecessary pages.
 
 ###v0.5 (2010-08-10)
 
@@ -105,6 +110,14 @@ Extract the zip file and just drop the contents in the wp-content/plugins/ direc
 
 ###v1.2 (2012-02-05)
 *   Added Bulgarian translations.
+
+###v1.3 (2012-04-26) (Dev time: 8 hours)
+
+    - Rewrote the way comment field was handled.
+    - Rewrote the way the Twitter profile image was retrieved.
+    - Started storing the Twitter profile image url in comment meta
+    - Revamped the admin UI
+    - Added Lithuanian translations
 
 ==Readme Generator==
 
