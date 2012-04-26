@@ -21,6 +21,12 @@ Text Domain: twitter-avatar-reloaded
 2011-09-11 - v1.0 - Using transient api for storing cache and also improve performance
 2011-11-13 - v1.1 - Added Spanish translations.
 2012-02-04 - v1.2 - Added Bulgarian translations.
+2012-02-04 - v1.2 - Added Bulgarian translations.
+2012-04-25 - v1.3 ( hours) - Rewrote the way comment field was handled.
+				  - Rewrote the way the Twitter profile image was retrieved.
+				  - Started storing the Twitter profile image url in comment meta
+				  - Revamped the admin UI
+				  - Added Bulgarian translations
 
 /*  Copyright 2009  Sudar Muthu  (email : sudar@sudarmuthu.com)
 
@@ -76,6 +82,15 @@ class TwitterAvatarReloaded {
         // Display twitter textbox in the comment form
         add_action('comment_form_default_fields', array(&$this, 'add_twitter_field'), 9);
         add_filter('wp_get_current_commenter', array(&$this, 'add_to_comment_data'), 10, 1);
+		
+		$options = get_option('twitter-avatar-reloaded-options');
+		if ($options && $options['legacy-support'] == 1) {
+			// Display twitter textbox in the comment form
+			add_action('comment_form', array(&$this, 'add_twitter_field_legacy'), 9);
+
+			// Enqueue the script
+			add_action('template_redirect', array(&$this, 'add_script'));
+		}
 
         // Display Twitter field in user's profile page
         add_filter('user_contactmethods', array(&$this, 'add_contactmethods'), 10, 1);
@@ -108,11 +123,14 @@ class TwitterAvatarReloaded {
         // Register options
         register_setting( 'twitter-avatar-reloaded-options', 'twitter-avatar-reloaded-options', array(&$this, 'validate_settings'));
 
-        //Global Options section
+        //Add default Options section
         add_settings_section('gr_global_section', '', array(&$this, 'tar_global_section_text'), self::MENU_SLUG);
+
+		// add setting fields
         add_settings_field('field-class', __('Twitter Field class', 'twitter-avatar-reloaded'), array(&$this, 'tar_field_class_callback'), self::MENU_SLUG, 'gr_global_section');
         add_settings_field('field-label', __('Twitter Field Label', 'twitter-avatar-reloaded'), array(&$this, 'tar_field_label_callback'), self::MENU_SLUG, 'gr_global_section');
         add_settings_field('field-html', __('Twitter Field html', 'twitter-avatar-reloaded'), array(&$this, 'tar_field_html_callback'), self::MENU_SLUG, 'gr_global_section');
+        add_settings_field('legacy-support', __('Support for legacy themes', 'twitter-avatar-reloaded'), array(&$this, 'tar_legacy_theme_callback' ), self::MENU_SLUG, 'gr_global_section');
 
     }
 
@@ -154,7 +172,7 @@ class TwitterAvatarReloaded {
     }
 
 	/**
-	 * Add author_twitter_field to the comment author data
+	 * Add author_twitter_field to the comment author data in cookie
 	 *
 	 * @return void
 	 * @author Sudar
@@ -170,52 +188,103 @@ class TwitterAvatarReloaded {
     function add_twitter_field($fields) {
 		$options = get_option('twitter-avatar-reloaded-options');
 
-		$dom = new DOMDocument();
+		if ($options['field-html'] != '') {
+			// if the user has specified the HTML, then use it
+			$fields['ta_twitter_field'] = $options['field-html'];
 
-		// dirty dirty hack - http://stackoverflow.com/a/4880227/24949
-		// TODO: Should find a cleaner way
-		if (version_compare(PHP_VERSION, '5.3.6') >= 0) {
-			$dom->loadHTML($fields['url']);
 		} else {
-			$dom->loadXML($fields['url']);
-		}
 
-		$inputs = $dom->getElementsByTagName('input');
-		foreach ($inputs as $input) {
-			$input->setAttribute('id', 'ta_twitter_field');
-			$input->setAttribute('name', 'ta_twitter_field');
-			$input->setAttribute('value', $_COOKIE['comment_author_twitter' . COOKIEHASH]);
-		}
+			// else try to guess it
+			$dom = new DOMDocument();
 
-		$labels = $dom->getElementsByTagName('label');
-		foreach ($labels as $label) {
-			$label->setAttribute('for', 'ta_twitter_field');
-			if ($options['field-label'] != '') {
-				$label->nodeValue = $options['field-label'];
+			// dirty dirty hack - http://stackoverflow.com/a/4880227/24949
+			// TODO: Should find a cleaner way
+			if (version_compare(PHP_VERSION, '5.3.6') >= 0) {
+				$dom->loadHTML($fields['url']);
 			} else {
-				$label->nodeValue = __('Twitter', 'twitter-avatar-reloaded');
+				$dom->loadXML($fields['url']);
 			}
-		}
 
-		$ps = $dom->getElementsByTagName('p');
-		foreach ($ps as $p) {
-			if ($options['field-class'] != '') {
-				$p->setAttribute('class', $options['field-class']);
+			$inputs = $dom->getElementsByTagName('input');
+			foreach ($inputs as $input) {
+				$input->setAttribute('id', 'ta_twitter_field');
+				$input->setAttribute('name', 'ta_twitter_field');
+				$input->setAttribute('value', $_COOKIE['comment_author_twitter' . COOKIEHASH]);
+			}
+
+			$labels = $dom->getElementsByTagName('label');
+			foreach ($labels as $label) {
+				$label->setAttribute('for', 'ta_twitter_field');
+				if ($options['field-label'] != '') {
+					$label->nodeValue = $options['field-label'];
+				} else {
+					$label->nodeValue = __('Twitter', 'twitter-avatar-reloaded');
+				}
+			}
+
+			$ps = $dom->getElementsByTagName('p');
+			foreach ($ps as $p) {
+				if ($options['field-class'] != '') {
+					$p->setAttribute('class', $options['field-class']);
+				} else {
+					$p->setAttribute('class', 'comment-form-twitter');
+				}
+			}
+
+			// dirty dirty hack - http://stackoverflow.com/a/4880227/24949
+			// TODO: Should find a cleaner way
+			if (version_compare(PHP_VERSION, '5.3.6') >= 0) {
+				$fields['ta_twitter_field'] = $dom->saveHTML($p);
 			} else {
-				$p->setAttribute('class', 'comment-form-twitter');
+				$fields['ta_twitter_field'] = $dom->saveHTML();
 			}
-		}
-
-		// dirty dirty hack - http://stackoverflow.com/a/4880227/24949
-		// TODO: Should find a cleaner way
-		if (version_compare(PHP_VERSION, '5.3.6') >= 0) {
-			$fields['ta_twitter_field'] = $dom->saveHTML($p);
-		} else {
-			$fields['ta_twitter_field'] = $dom->saveHTML();
 		}
 		
 		return $fields;
     }
+
+	/*========================== Legacy Support ===========================*/
+    /**
+     * Add twitter field to the form (legacy way)
+     * @global <type> $wp_scripts
+     */
+    function add_twitter_field_legacy() {
+        global $wp_scripts;
+
+        if (comments_open() && !is_user_logged_in() && isset($wp_scripts) && $wp_scripts->query('ta')) {
+            $options = get_option('twitter-avatar-reloaded-options');
+			if ($options['field-html'] != '') {
+				echo $options['field-html'];
+			} else {
+?>
+				<p id="ta_twitter" style="display:block">
+					<input type="textbox" id="ta_twitter_field" class="textbox" tabindex="4" size="30" name="ta_twitter_field" value="<?php echo esc_attr($_COOKIE['comment_author_twitter' . COOKIEHASH]); ?>" />
+					<label for="ta_twitter_field">
+<?php
+						if ($options['field-label'] != '') {
+							echo $options['field-label'];
+						} else {
+							_e('Twitter', 'twitter-avatar-reloaded');
+						}
+?>
+					</label>
+				</p>
+<?php
+			}
+        }
+	}
+
+    /**
+     * Enqueue JavaScript
+     */
+    function add_script() {
+        // Enqueue the script on single page/post
+        if (is_singular()) {
+            wp_enqueue_script('ta', plugin_dir_url(__FILE__) . 'twitter-avatar-reloaded.js', array('jquery'), '1.3', true);
+        }
+	}
+
+	/*========================== Legacy Support ===========================*/
 
     /**
      * Save the twitter field to the database
@@ -243,7 +312,7 @@ class TwitterAvatarReloaded {
      */
     function add_action_links( $links ) {
         // Add a link to this plugin's settings page
-        $settings_link = '<a href="options-general.php?page="' . self::MENU_SLUG . '>' . __("Settings", 'twitter-avatar-reloaded') . '</a>';
+        $settings_link = '<a href="options-general.php?page=' . self::MENU_SLUG . '">' . __("Settings", 'twitter-avatar-reloaded') . '</a>';
         array_unshift( $links, $settings_link );
         return $links;
     }
@@ -343,6 +412,7 @@ class TwitterAvatarReloaded {
             $input['field-class'] = 'comment-form-twitter';
         }
 
+		//TODO: validate the html input field as well
         return $input;
     }
 
@@ -385,6 +455,12 @@ class TwitterAvatarReloaded {
         echo "<textarea id='field-html' name='twitter-avatar-reloaded-options[field-html]' cols='40' >{$options['field-html']}</textarea> <br>";
 		_e('By default the html for the website field will be cloned.', 'twitter-avatar-reloaded');
     }
+
+    function tar_legacy_theme_callback() {
+        $options = get_option('twitter-avatar-reloaded-options');
+        echo "<input id='legacy-support' name='twitter-avatar-reloaded-options[legacy-support]' type='checkbox' value = '1' " . checked($options['legacy-support'], 1, FALSE) . "> ", __('Enable support for legacy themes', 'twitter-avatar-reloaded'), "<br>";
+		_e("You don't need it if your theme supports the new comment_form hook", 'twitter-avatar-reloaded');
+	}
 
     // PHP4 compatibility
     function TwitterAvatarReloaded() {
