@@ -299,9 +299,15 @@ class TwitterAvatarReloaded {
             // Strip the twitter url if present
             $comment_author_twitter = str_ireplace("http://twitter.com/", "", $comment_author_twitter);
 
-            setcookie('comment_author_twitter' . COOKIEHASH, $comment_author_twitter, time()+60*60*24*30);
-            update_metadata('comment', $comment_id, 'comment_author_twitter', $comment_author_twitter);
-            update_metadata('comment', $comment_id, 'comment_author_twitter_profile_image', get_twitter_profile_image($comment_author_twitter));
+			if ($comment_author_twitter != '') {
+				setcookie('comment_author_twitter' . COOKIEHASH, $comment_author_twitter, time()+60*60*24*30);
+				update_comment_meta($comment_id, 'comment_author_twitter', $comment_author_twitter);
+
+				$comment_author_profile_image = get_twitter_profile_image($comment_author_twitter);
+				if ($comment_author_profile_image != '') {
+					update_comment_meta($comment_id, 'comment_author_twitter_profile_image', $comment_author_profile_image);
+				}
+			}
         }
     }
 
@@ -550,7 +556,7 @@ if (!function_exists('get_comment_author_twitter_profile_image')) {
 
 		if ($comment_author_twitter_profile_image == '') {
 			$comment_author_twitter_profile_image = get_twitter_profile_image(get_comment_author_twitter_id($comment_ID));
-			if ($store) {
+			if ($store && $comment_author_twitter_profile_image != '') {
 				update_comment_meta($comment_ID, 'comment_author_twitter_profile_image', $comment_author_twitter_profile_image);
 			}
 		}

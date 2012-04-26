@@ -39,7 +39,6 @@ class TwitterProfileImage {
             // Something bad happened
             return '';
         }
-
     }
 } // END static class TwitterProfileImage
 ?>
