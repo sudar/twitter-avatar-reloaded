@@ -28,7 +28,8 @@ Text Domain: twitter-avatar-reloaded
 				  - Revamped the admin UI
 				  - Added Lithuanian translations
 2012-06-12 - v1.4 (0.5 hours)
-				  - Added array_key_exists() function check to remove notices
+				  - Added array_key_exists() function check to remove notices (Johannes Freudendahl)
+				  - Added Hindi translations (Love Chandel)
 
 
 /*  Copyright 2009  Sudar Muthu  (email : sudar@sudarmuthu.com)
