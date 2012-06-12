@@ -5,7 +5,7 @@ Plugin URI: http://sudarmuthu.com/wordpress/twitter-avatar-reloaded
 Description: Stores Twitter username together with comments and replaces gravatar with twitter avatar.
 Author: Sudar
 Donate Link: http://sudarmuthu.com/if-you-wanna-thank-me
-Version: 1.3
+Version: 1.4
 Author URI: http://sudarmuthu.com/
 Text Domain: twitter-avatar-reloaded
 
@@ -27,6 +27,9 @@ Text Domain: twitter-avatar-reloaded
 				  - Started storing the Twitter profile image url in comment meta
 				  - Revamped the admin UI
 				  - Added Lithuanian translations
+2012-06-12 - v1.4 (0.5 hours)
+				  - Added array_key_exists() function check to remove notices
+
 
 /*  Copyright 2009  Sudar Muthu  (email : sudar@sudarmuthu.com)
 
@@ -84,7 +87,7 @@ class TwitterAvatarReloaded {
         add_filter('wp_get_current_commenter', array(&$this, 'add_to_comment_data'), 10, 1);
 		
 		$options = get_option('twitter-avatar-reloaded-options');
-		if ($options && $options['legacy-support'] == 1) {
+		if ($options && array_key_exists('legacy-support', $options) && $options['legacy-support'] == 1) {
 			// Display twitter textbox in the comment form
 			add_action('comment_form', array(&$this, 'add_twitter_field_legacy'), 9);
 
@@ -178,7 +181,9 @@ class TwitterAvatarReloaded {
 	 * @author Sudar
 	 */
 	function add_to_comment_data($commenterData) {
+	  if (array_key_exists('comment_author_twitter' . COOKIEHASH, $_COOKIE)) {
 		$commenterData['comment_author_twitter'] = $_COOKIE['comment_author_twitter' . COOKIEHASH];
+	  }
 		return $commenterData;
 	}
 
@@ -209,7 +214,11 @@ class TwitterAvatarReloaded {
 			foreach ($inputs as $input) {
 				$input->setAttribute('id', 'ta_twitter_field');
 				$input->setAttribute('name', 'ta_twitter_field');
-				$input->setAttribute('value', $_COOKIE['comment_author_twitter' . COOKIEHASH]);
+				if (array_key_exists('comment_author_twitter' . COOKIEHASH, $_COOKIE)) {
+					$input->setAttribute('value', $_COOKIE['comment_author_twitter' . COOKIEHASH]);
+				} else {
+					$input->setAttribute('value', ''); 
+				}
 			}
 
 			$labels = $dom->getElementsByTagName('label');
@@ -370,17 +379,20 @@ class TwitterAvatarReloaded {
      * @param <type> $alt
      */
     function change_avatar($avatar, $id_or_email, $size, $default, $alt) {
+        $comment = get_comment(get_comment_ID());
+        
+        if (!$comment || !property_exists($comment, 'comment_ID')) {
+          return $avatar;
+        }
 
         $comment_author_twitter = '';
-        $comment = get_comment(get_comment_ID());
-        if ($comment->user_id) {
-            $user_profile = get_userdata($comment->user_id);
-            $comment_author_twitter = $user_profile->twitter;
+        if ($comment && property_exists($comment, 'user_id') && $comment->user_id) {
+            $comment_author_twitter = get_user_meta($comment->user_id, 'twitter', true);
         } else {
-            $comment_author_twitter = get_metadata('comment', get_comment_ID(), 'comment_author_twitter', true);
+            $comment_author_twitter = get_comment_meta(get_comment_ID(), 'comment_author_twitter', true);
         }
         
-        $comment_author_twitter = str_ireplace('http://twitter.com/', '', $comment_author_twitter);
+        $comment_author_twitter = str_ireplace('http://twitter.com/', '', strtolower($comment_author_twitter));
 
         if ($comment_author_twitter != '') { // Try to get twitter avatar only if comment author twitter is not null
 			$image_url = get_comment_author_twitter_profile_image(get_comment_ID(), TRUE);
@@ -493,7 +505,7 @@ if (!function_exists('get_comment_author_twitter_id')) {
 			$user_profile = get_userdata($comment->user_id);
 			$comment_author_twitter = $user_profile->twitter;
 		} else {
-			$comment_author_twitter = get_metadata('comment', $comment->comment_ID, 'comment_author_twitter', true);
+			$comment_author_twitter = get_comment_meta( $comment->comment_ID, 'comment_author_twitter', true);
 		}
 
 		$comment_author_twitter = str_ireplace('http://twitter.com/', '', $comment_author_twitter);
