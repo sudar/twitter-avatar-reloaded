@@ -1,0 +1,113 @@
+# Copyright (C) 2012 Twitter Avatar Reloaded
+# This file is distributed under the same license as the Twitter Avatar Reloaded package.
+msgid ""
+msgstr ""
+"Project-Id-Version: Twitter Avatar Reloaded 1.4\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tag/twitter-avatar-reloaded\n"
+"POT-Creation-Date: 2012-04-26 14:57:37+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2012-10-18 21:51+0100\n"
+"Last-Translator: Diana <diana@wpcouponshop.com>\n"
+"Language-Team: \n"
+"X-Generator: Poedit 1.5.4\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Language: Serbian\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+
+#. #-#-#-#-#  plugin.pot (Twitter Avatar Reloaded 1.3)  #-#-#-#-#
+#. Plugin Name of the plugin/theme
+#: twitter-avatar-reloaded.php:116
+msgid "Twitter Avatar Reloaded"
+msgstr "Twitter Avatar Reloaded"
+
+#: twitter-avatar-reloaded.php:130
+msgid "Twitter Field class"
+msgstr "Twitter polje klasa"
+
+#: twitter-avatar-reloaded.php:131
+msgid "Twitter Field Label"
+msgstr "Twitter polje oznaka "
+
+#: twitter-avatar-reloaded.php:132
+msgid "Twitter Field html"
+msgstr "Twitter polje html"
+
+#: twitter-avatar-reloaded.php:133
+msgid "Support for legacy themes"
+msgstr "Podrska za zavestene teme "
+
+#: twitter-avatar-reloaded.php:145
+msgid "Twitter Username"
+msgstr "Twitter korisnicko ime "
+
+#: twitter-avatar-reloaded.php:221 twitter-avatar-reloaded.php:267
+#: twitter-avatar-reloaded.php:413
+msgid "Twitter"
+msgstr "Twitter"
+
+#: twitter-avatar-reloaded.php:321
+msgid "Settings"
+msgstr "Podesavanja"
+
+#: twitter-avatar-reloaded.php:333
+msgid "plugin"
+msgstr "Plagin"
+
+#: twitter-avatar-reloaded.php:333
+msgid "Version"
+msgstr "Verzija"
+
+#: twitter-avatar-reloaded.php:333
+msgid "by"
+msgstr "od"
+
+#: twitter-avatar-reloaded.php:343
+msgid "Twitter Avatar Reloaded Settings"
+msgstr "Twitter avatar dopunjena podesavanja"
+
+#: twitter-avatar-reloaded.php:353
+msgid "Save Changes"
+msgstr "Sacuvaj izmene"
+
+#: twitter-avatar-reloaded.php:441
+msgid "By default <code>comment-form-twitter</code> will be used"
+msgstr "Predodredjeno  <code>comment-form-twitter</code>  ce biti korisceno"
+
+#: twitter-avatar-reloaded.php:450
+msgid "By default <code>Twitter</code> will be used"
+msgstr "Predodredjeno <code>Twitter</code> ce biti korisceno"
+
+#: twitter-avatar-reloaded.php:462
+msgid "By default the html for the website field will be cloned."
+msgstr "Predodredjeno je da html polje za websajt bude klonirano "
+
+#: twitter-avatar-reloaded.php:467
+msgid "Enable support for legacy themes"
+msgstr "Omoguci podrsku za zavestene teme"
+
+#: twitter-avatar-reloaded.php:468
+msgid "You don't need it if your theme supports the new comment_form hook"
+msgstr "Ne treba vam ako vasa tema podrzava novi comment_form izgled"
+
+#. Plugin URI of the plugin/theme
+msgid "http://sudarmuthu.com/wordpress/twitter-avatar-reloaded"
+msgstr "http://sudarmuthu.com/wordpress/twitter-avatar-reloaded"
+
+#. Description of the plugin/theme
+msgid ""
+"Stores Twitter username together with comments and replaces gravatar with "
+"twitter avatar."
+msgstr ""
+"Cuva Twitter korisnicko ime zajedno s komentarima i zamenjuje gravatas s "
+"Twitter avatarom"
+
+#. Author of the plugin/theme
+msgid "Sudar"
+msgstr "Sudar"
+
+#. Author URI of the plugin/theme
+msgid "http://sudarmuthu.com/"
+msgstr "http://sudarmuthu.com/"

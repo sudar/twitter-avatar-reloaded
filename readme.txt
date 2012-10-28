@@ -3,8 +3,8 @@ Contributors: sudar
 Tags: twitter, gravatar, avatar
 Requires at least: 2.9
 Donate Link: http://sudarmuthu.com/if-you-wanna-thank-me
-Tested up to: 3.3.2
-Stable tag: 1.4
+Tested up to: 3.4.2
+Stable tag: 1.4.1
 
 Stores Twitter username together with comments and replaces gravatar with twitter avatar.
 
@@ -35,6 +35,7 @@ This Plugin provides 7 template functions which you can use in your theme to cus
 *   Bulgarian (Thanks Nikolay Nikolov of [Health Blog][9])   
 *   Lithuanian (Thanks Vincent G , from [http://www.host1free.com][10])
 *   Hindi (Thanks Love Chandel)
+*   Serbian (Thanks Diana)
 
 The pot file is available with the Plugin. If you are willing to do translation for the Plugin, use the pot file to create the .po files for your language and let me know. I will add it to the Plugin after giving credit to you.
 
@@ -120,9 +121,12 @@ Extract the zip file and just drop the contents in the wp-content/plugins/ direc
 - Revamped the admin UI
 - Added Lithuanian translations
 
-###v1.4 (2012-06-12)
+###v1.4 (2012-06-12) (Dev time: 0.5 hour)
 - Added array_key_exists() function check to remove notices (Johannes Freudendahl)
 - Added Hindi translations (Love Chandel)
+
+### v1.4.1 (2012-10-28) (Dev time: 0.5 hour)
+* Added Serbian translations
 
 ==Readme Generator==
 
