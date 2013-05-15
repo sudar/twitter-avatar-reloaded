@@ -1,89 +1,89 @@
-# Copyright (C) 2012 Twitter Avatar Reloaded
+# Copyright (C) 2013 Twitter Avatar Reloaded
 # This file is distributed under the same license as the Twitter Avatar Reloaded package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Twitter Avatar Reloaded 1.3\n"
+"Project-Id-Version: Twitter Avatar Reloaded 1.4.3\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/twitter-avatar-reloaded\n"
-"POT-Creation-Date: 2012-04-26 14:57:37+00:00\n"
+"POT-Creation-Date: 2013-05-15 15:26:45+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2012-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2013-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 
-#. #-#-#-#-#  plugin.pot (Twitter Avatar Reloaded 1.3)  #-#-#-#-#
+#. #-#-#-#-#  twitter-avatar-reloaded.pot (Twitter Avatar Reloaded 1.4.3)  #-#-#-#-#
 #. Plugin Name of the plugin/theme
-#: twitter-avatar-reloaded.php:116
+#: twitter-avatar-reloaded.php:133
 msgid "Twitter Avatar Reloaded"
 msgstr ""
 
-#: twitter-avatar-reloaded.php:130
+#: twitter-avatar-reloaded.php:147
 msgid "Twitter Field class"
 msgstr ""
 
-#: twitter-avatar-reloaded.php:131
+#: twitter-avatar-reloaded.php:148
 msgid "Twitter Field Label"
 msgstr ""
 
-#: twitter-avatar-reloaded.php:132
+#: twitter-avatar-reloaded.php:149
 msgid "Twitter Field html"
 msgstr ""
 
-#: twitter-avatar-reloaded.php:133
+#: twitter-avatar-reloaded.php:150
 msgid "Support for legacy themes"
 msgstr ""
 
-#: twitter-avatar-reloaded.php:145
+#: twitter-avatar-reloaded.php:162
 msgid "Twitter Username"
 msgstr ""
 
-#: twitter-avatar-reloaded.php:221 twitter-avatar-reloaded.php:267
-#: twitter-avatar-reloaded.php:413
+#: twitter-avatar-reloaded.php:244 twitter-avatar-reloaded.php:290
+#: twitter-avatar-reloaded.php:439
 msgid "Twitter"
 msgstr ""
 
-#: twitter-avatar-reloaded.php:321
+#: twitter-avatar-reloaded.php:344
 msgid "Settings"
 msgstr ""
 
-#: twitter-avatar-reloaded.php:333
+#: twitter-avatar-reloaded.php:356
 msgid "plugin"
 msgstr ""
 
-#: twitter-avatar-reloaded.php:333
+#: twitter-avatar-reloaded.php:356
 msgid "Version"
 msgstr ""
 
-#: twitter-avatar-reloaded.php:333
+#: twitter-avatar-reloaded.php:356
 msgid "by"
 msgstr ""
 
-#: twitter-avatar-reloaded.php:343
+#: twitter-avatar-reloaded.php:366
 msgid "Twitter Avatar Reloaded Settings"
 msgstr ""
 
-#: twitter-avatar-reloaded.php:353
+#: twitter-avatar-reloaded.php:376
 msgid "Save Changes"
 msgstr ""
 
-#: twitter-avatar-reloaded.php:441
+#: twitter-avatar-reloaded.php:467
 msgid "By default <code>comment-form-twitter</code> will be used"
 msgstr ""
 
-#: twitter-avatar-reloaded.php:450
+#: twitter-avatar-reloaded.php:476
 msgid "By default <code>Twitter</code> will be used"
 msgstr ""
 
-#: twitter-avatar-reloaded.php:462
+#: twitter-avatar-reloaded.php:488
 msgid "By default the html for the website field will be cloned."
 msgstr ""
 
-#: twitter-avatar-reloaded.php:467
+#: twitter-avatar-reloaded.php:493
 msgid "Enable support for legacy themes"
 msgstr ""
 
-#: twitter-avatar-reloaded.php:468
+#: twitter-avatar-reloaded.php:494
 msgid "You don't need it if your theme supports the new comment_form hook"
 msgstr ""
 
