@@ -1,13 +1,16 @@
 <?php
 /**
 Plugin Name: Twitter Avatar Reloaded
+Plugin Script: twitter-avatar-reloaded.php
 Plugin URI: http://sudarmuthu.com/wordpress/twitter-avatar-reloaded
 Description: Stores Twitter username together with comments and replaces gravatar with twitter avatar.
 Author: Sudar
 Donate Link: http://sudarmuthu.com/if-you-wanna-thank-me
-Version: 1.4.2
+Version: 1.4.3
+License: GPL
 Author URI: http://sudarmuthu.com/
 Text Domain: twitter-avatar-reloaded
+Domain Path: languages/
 
 === RELEASE NOTES ===
 2010-03-13 - v0.1 - Initial Release
@@ -34,6 +37,8 @@ Text Domain: twitter-avatar-reloaded
                   - Added Serbian translations
 2012-11-07 - v1.4.2 (0.5 hours)
                   - Added translation support for Irish
+2013-05-15 - v1.4.3 (0.5 hours)
+                  - Added translation support for Gujarati
 
 /*  Copyright 2009  Sudar Muthu  (email : sudar@sudarmuthu.com)
 
@@ -71,6 +76,11 @@ class TwitterAvatarReloaded {
 	 * Constant that will be used throughtout the Plugin
 	 */
 	const MENU_SLUG = 'twitter-avatar-reloaded';
+
+    /**
+     * Version of the Plugin
+    */
+    const VERSION = '1.4.3';
 
     /**
      * Initalize the plugin by registering the hooks
@@ -355,7 +365,7 @@ class TwitterAvatarReloaded {
             <?php screen_icon(); ?>
             <h2><?php _e( 'Twitter Avatar Reloaded Settings', 'twitter-avatar-reloaded' ); ?></h2>
 
-            <iframe height = "950" src = "http://sudarmuthu.com/projects/wordpress/twitter-avatar-reloaded/sidebar.php?color=<?php echo get_user_option('admin_color'); ?>"></iframe>
+            <iframe height = "950" src = "http://sudarmuthu.com/projects/wordpress/twitter-avatar-reloaded/sidebar.php?color=<?php echo get_user_option('admin_color'); ?>&version=<?php echo self::VERSION; ?>"></iframe>
 
 			<div style = "float:left; width:75%">
 				<form id="smer_form" method="post" action="options.php">
@@ -483,11 +493,6 @@ class TwitterAvatarReloaded {
         echo "<input id='legacy-support' name='twitter-avatar-reloaded-options[legacy-support]' type='checkbox' value = '1' " . checked($options['legacy-support'], 1, FALSE) . "> ", __('Enable support for legacy themes', 'twitter-avatar-reloaded'), "<br>";
 		_e("You don't need it if your theme supports the new comment_form hook", 'twitter-avatar-reloaded');
 	}
-
-    // PHP4 compatibility
-    function TwitterAvatarReloaded() {
-        $this->__construct();
-    }
 }
 
 // Start this plugin once all other plugins are fully loaded
