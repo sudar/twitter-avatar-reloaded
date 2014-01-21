@@ -56,27 +56,18 @@ If you are not familiar with either git or Github then refer to this [guide to s
 ## Translation ##
 
 *   Hebrew (Thanks Sagive)
-*   Dutch (Thanks Rene of [WordPress WPwebshop][4])
-*   Brazilian Portuguese (Thanks Marcelo of [Criacao de Sites em Ribeirao Preto][5])
-*   German (Thanks Jenny Beelens of [professionaltranslation.com][7])
-*   Spanish (Thanks Brian Flores of [InMotion Hosting][8])   
-*   Bulgarian (Thanks Nikolay Nikolov of [Health Blog][9])   
-*   Lithuanian (Thanks Vincent G , from [http://www.host1free.com][10])
+*   Dutch (Thanks Rene of WordPress WPwebshop)
+*   Brazilian Portuguese (Thanks Marcelo of Criacao de Sites em Ribeirao Preto)
+*   German (Thanks Jenny Beelens)
+*   Spanish (Thanks Brian Flores of InMotion Hosting)   
+*   Bulgarian (Thanks Nikolay Nikolov of Health Blog)   
+*   Lithuanian (Thanks Vincent G)
 *   Hindi (Thanks Love Chandel)
 *   Serbian (Thanks Diana)
 *   Irish (Thanks Vikas Arora)
-*   Gujarati (Thanks Puneet of [Reverse Apps][11])
+*   Gujarati (Thanks Puneet)
 
 The pot file is available with the Plugin. If you are willing to do translation for the Plugin, use the pot file to create the .po files for your language and let me know. I will add it to the Plugin after giving credit to you.
-
-[4]: http://wpwebshop.com/premium-wordpress-plugins/
-[5]: http://www.techload.com.br/
-[6]: http://twitter.com/sudarmuthu
-[7]: http://www.professionaltranslation.com
-[8]: http://www.inmotionhosting.com/
-[9]: http://healthishblog.com/ 
-[10]: http://www.host1free.com
-[11]: https://www.reverseapps.com/
 
 ## Installation ##
 
@@ -84,7 +75,9 @@ Extract the zip file and just drop the contents in the wp-content/plugins/ direc
 
 ## Screenshots ##
 
-1. Comment form with the new Twitter Field
+![](screenshot-1.png)
+
+Comment form with the new Twitter Field
 
 ## Readme Generator ##
 
