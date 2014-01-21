@@ -393,7 +393,7 @@ class TwitterAvatarReloaded {
      * @param <type> $alt
      */
     function change_avatar($avatar, $id_or_email, $size, $default, $alt) {
-        $comment = get_comment(get_comment_ID());
+        global $comment;
         
         if (!$comment || !property_exists($comment, 'comment_ID')) {
           return $avatar;
