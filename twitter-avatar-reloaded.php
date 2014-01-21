@@ -13,32 +13,7 @@ Text Domain: twitter-avatar-reloaded
 Domain Path: languages/
 
 === RELEASE NOTES ===
-2010-03-13 - v0.1 - Initial Release
-2010-03-16 - v0.2 - Proper alignment of the Twitter username field
-2010-03-16 - v0.3 - Added translation for Hebrew (Thanks Sagive)
-2010-08-09 - v0.4 - Removed JavaScript from unncessary pages.
-2010-08-10 - v0.5 - Added support for registered users and added option to specify Twitter field label.
-2011-02-05 - v0.6 - Added Brazilian Portuguese and Dutch translations
-2011-05-11 - v0.7 - Added template functions to display Comment author twitter id and profile url
-2011-05-22 - v0.8 - Added German Translations
-2011-09-11 - v1.0 - Using transient api for storing cache and also improve performance
-2011-11-13 - v1.1 - Added Spanish translations.
-2012-02-04 - v1.2 - Added Bulgarian translations.
-2012-02-04 - v1.2 - Added Bulgarian translations.
-2012-04-25 - v1.3 (8 hours) - Rewrote the way comment field was handled.
-				  - Rewrote the way the Twitter profile image was retrieved.
-				  - Started storing the Twitter profile image url in comment meta
-				  - Revamped the admin UI
-				  - Added Lithuanian translations
-2012-06-12 - v1.4 (0.5 hours)
-				  - Added array_key_exists() function check to remove notices (Johannes Freudendahl)
-				  - Added Hindi translations (Love Chandel)
-2012-10-28 - v1.4.1 (0.5 hours)
-                  - Added Serbian translations
-2012-11-07 - v1.4.2 (0.5 hours)
-                  - Added translation support for Irish
-2013-05-15 - v1.4.3 (0.5 hours)
-                  - Added translation support for Gujarati
+Check readme file for full release notes
 
 /*  Copyright 2009  Sudar Muthu  (email : sudar@sudarmuthu.com)
 
