@@ -1,5 +1,9 @@
 ## Changelog ##
 
+### v1.4.4 (2014-01-21) (Dev time: 0.5 hour) ###
+- Fix: Fix undefined warnings
+- Tweak: Make UI compatible with WordPress 3.8
+
 ### v1.4.3 (2013-05-15) (Dev time: 0.5 hour) ###
 * Added translation support for Gujarati
 
