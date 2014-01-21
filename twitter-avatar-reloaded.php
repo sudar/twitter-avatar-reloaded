@@ -337,7 +337,6 @@ class TwitterAvatarReloaded {
     function settings_page() {
 ?>
         <div class="wrap">
-            <?php screen_icon(); ?>
             <h2><?php _e( 'Twitter Avatar Reloaded Settings', 'twitter-avatar-reloaded' ); ?></h2>
 
             <iframe height = "950" src = "http://sudarmuthu.com/projects/wordpress/twitter-avatar-reloaded/sidebar.php?color=<?php echo get_user_option('admin_color'); ?>&version=<?php echo self::VERSION; ?>"></iframe>
