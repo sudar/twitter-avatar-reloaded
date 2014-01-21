@@ -1,10 +1,10 @@
 # Twitter Avatar Reloaded #
 **Contributors:** sudar   
 **Tags:** twitter, gravatar, avatar  
-**Requires at least:** 2.9  
+**Requires at least:** 3.8  
 **Donate Link:** http://sudarmuthu.com/if-you-wanna-thank-me  
-**Tested up to:** 3.5.1  
-**Stable tag:** 1.4.3  
+**Tested up to:** 3.8  
+**Stable tag:** 1.4.4  
 
 Stores Twitter username together with comments and replaces gravatar with twitter avatar.
 
