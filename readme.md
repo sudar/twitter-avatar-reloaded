@@ -14,6 +14,8 @@ Twitter avatar reloaded Plugin adds a new field to the comment form to get the u
 
 This Plugin works seamlessly and you don't need to edit your theme files to add the new field to the comment form. It automatically adds it when activated.
 
+**Note: Because of the changes in the way Twitter API works, from v2.0 of the plugin you need to create a twitter app and provide the access key and token. Refer to the installation instructions to find out how to do this**
+
 ### Template functions
 
 This Plugin provides 7 template functions which you can use in your theme to customize the way the comment author's twitter id/profile should be displayed.
@@ -22,8 +24,8 @@ This Plugin provides 7 template functions which you can use in your theme to cus
 *   `comment_author_twitter_id($comment_id)` - Print the Twitter id of the comment author
 *   `get_comment_author_twitter_url($comment_id)` - Get the Twitter profile url of the comment author
 *   `comment_author_twitter_url($comment_id)` - Print the Twitter url of the comment author
-*   `get_comment_author_twitter_profile_image($comment_id)` - Get the twitter profile image url of the comment author 
-*   `comment_author_twitter_profile_image($comment_id)` - Print the twitter profile image url of the comment author 
+*   `get_comment_author_twitter_profile_image($comment_id)` - Get the twitter profile image url of the comment author
+*   `comment_author_twitter_profile_image($comment_id)` - Print the twitter profile image url of the comment author
 *   `get_twitter_profile_image($twitter_username)` - Get the twitter profile image of a user using twitter id
 
 ### Styling using CSS
@@ -53,14 +55,18 @@ If you are not familiar with either git or Github then refer to this [guide to s
  [7]: https://github.com/sudar/twitter-avatar-reloaded/issues
  [8]: http://wordpress.org/extend/plugins/twitter-avatar-reloaded/
 
+### Credit
+
+This plugin uses [wp-twitter-api](https://github.com/timwhitlock/wp-twitter-api) by @[timwhitlock](https://twitter.com/timwhitlock) as the underlying backend to make calls to Twitter.
+
 ## Translation ##
 
 *   Hebrew (Thanks Sagive)
 *   Dutch (Thanks Rene of WordPress WPwebshop)
 *   Brazilian Portuguese (Thanks Marcelo of Criacao de Sites em Ribeirao Preto)
 *   German (Thanks Jenny Beelens)
-*   Spanish (Thanks Brian Flores of InMotion Hosting)   
-*   Bulgarian (Thanks Nikolay Nikolov of Health Blog)   
+*   Spanish (Thanks Brian Flores of InMotion Hosting)
+*   Bulgarian (Thanks Nikolay Nikolov of Health Blog)
 *   Lithuanian (Thanks Vincent G)
 *   Hindi (Thanks Love Chandel)
 *   Serbian (Thanks Diana)
@@ -72,6 +78,14 @@ The pot file is available with the Plugin. If you are willing to do translation 
 ## Installation ##
 
 Extract the zip file and just drop the contents in the wp-content/plugins/ directory of your WordPress installation and then activate the Plugin from Plugins page.
+
+Once the plugin is installed and enabled you can bind it to a Twitter account as follows:
+
+- Register a Twitter application at https://dev.twitter.com/apps
+- Note the Consumer key and Consumer secret under OAuth settings
+- Log into WordPress admin and go to Settings > Twitter API
+- Enter the consumer key and secret and click 'Save settings'
+- Click the 'Connect to Twitter' button and follow the prompts.
 
 ## Screenshots ##
 

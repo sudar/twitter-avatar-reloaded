@@ -1,0 +1,3 @@
+[submodule "includes/libs/wp-twitter-api"]
+	path = includes/libs/wp-twitter-api
+	url = https://github.com/timwhitlock/wp-twitter-api.git

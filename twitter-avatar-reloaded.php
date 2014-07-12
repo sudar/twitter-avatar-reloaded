@@ -29,26 +29,22 @@ Check readme file for full release notes
     You should have received a copy of the GNU General Public License
     along with this program; if not, write to the Free Software
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
-
-Uses code from the following places
-
-http://wordpress.org/extend/plugins/twitter-avatar/
-http://wordpress.org/extend/plugins/openid/
- 
 */
 
-// include the TwiterProfileImage class
-if (!class_exists('TwitterProfileImage')) {
-	require_once dirname(__FILE__) . '/libs/TwitterProfileImage.php';
+if( ! function_exists( 'twitter_api_get' ) ) {
+    require dirname( __FILE__ ) . '/includes/libs/wp-twitter-api/twitter-api.php';
 }
 
+if( ! class_exists( 'Twitter_Profile_Image' ) ) {
+    require dirname( __FILE__ ) . '/includes/class-twitter-profile-image.php';
+}
 /**
  * Twitter Avatar Reloaded Plugin Class
  */
 class TwitterAvatarReloaded {
 
 	/**
-	 * Constant that will be used throughtout the Plugin
+	 * Menu slug
 	 */
 	const MENU_SLUG = 'twitter-avatar-reloaded';
 
@@ -58,14 +54,12 @@ class TwitterAvatarReloaded {
     const VERSION = '1.4.3';
 
     /**
-     * Initalize the plugin by registering the hooks
+     * Initialize the plugin by registering the hooks
      */
     function __construct() {
 
         // Load localization domain
         load_plugin_textdomain( 'twitter-avatar-reloaded', false, dirname(plugin_basename(__FILE__)) . '/languages' );
-
-        // Register hooks
 
         // Settings hooks
         add_action( 'admin_menu', array(&$this, 'register_settings_page') );
@@ -74,7 +68,7 @@ class TwitterAvatarReloaded {
         // Display twitter textbox in the comment form
         add_action('comment_form_default_fields', array(&$this, 'add_twitter_field'), 9);
         add_filter('wp_get_current_commenter', array(&$this, 'add_to_comment_data'), 10, 1);
-		
+
 		$options = get_option('twitter-avatar-reloaded-options');
 		if ($options && array_key_exists('legacy-support', $options) && $options['legacy-support'] == 1) {
 			// Display twitter textbox in the comment form
@@ -98,7 +92,6 @@ class TwitterAvatarReloaded {
         // add action links
         $plugin = plugin_basename(__FILE__);
         add_filter("plugin_action_links_$plugin", array(&$this, 'add_action_links'));
-
     }
 
     /**
@@ -203,10 +196,11 @@ class TwitterAvatarReloaded {
 			foreach ($inputs as $input) {
 				$input->setAttribute('id', 'ta_twitter_field');
 				$input->setAttribute('name', 'ta_twitter_field');
+				$input->setAttribute('type', 'text');
 				if (array_key_exists('comment_author_twitter' . COOKIEHASH, $_COOKIE)) {
 					$input->setAttribute('value', $_COOKIE['comment_author_twitter' . COOKIEHASH]);
 				} else {
-					$input->setAttribute('value', ''); 
+					$input->setAttribute('value', '');
 				}
 			}
 
@@ -237,7 +231,7 @@ class TwitterAvatarReloaded {
 				$fields['ta_twitter_field'] = $dom->saveHTML();
 			}
 		}
-		
+
 		return $fields;
     }
 
@@ -278,7 +272,7 @@ class TwitterAvatarReloaded {
     function add_script() {
         // Enqueue the script on single page/post
         if (is_singular()) {
-            wp_enqueue_script('ta', plugin_dir_url(__FILE__) . 'twitter-avatar-reloaded.js', array('jquery'), '1.3', true);
+            wp_enqueue_script('ta', plugin_dir_url(__FILE__) . 'twitter-avatar-reloaded.js', array('jquery'), self::VERSION, true);
         }
 	}
 
@@ -368,7 +362,7 @@ class TwitterAvatarReloaded {
      */
     function change_avatar($avatar, $id_or_email, $size, $default, $alt) {
         global $comment;
-        
+
         if (!$comment || !property_exists($comment, 'comment_ID')) {
           return $avatar;
         }
@@ -379,7 +373,7 @@ class TwitterAvatarReloaded {
         } else {
             $comment_author_twitter = get_comment_meta(get_comment_ID(), 'comment_author_twitter', true);
         }
-        
+
         $comment_author_twitter = str_ireplace('http://twitter.com/', '', strtolower($comment_author_twitter));
 
         if ($comment_author_twitter != '') { // Try to get twitter avatar only if comment author twitter is not null
@@ -499,7 +493,7 @@ if (!function_exists('get_comment_author_twitter_id')) {
 
 /**
  * Print the Twitter id of the comment author
- * 
+ *
  * @param <int> $comment_ID - ID of the comment - Optional
  */
 if (!function_exists('comment_author_twitter_id')) {
@@ -536,7 +530,7 @@ if (!function_exists('comment_author_twitter_url')) {
 }
 
 /**
- * Returns the twitter profile image url of the comment author 
+ * Returns the twitter profile image url of the comment author
  *
  * @param <int> $comment_ID - ID of the comment - Optional
  * @param <bool> store - Whether to store the profile image url in comment meta - Optional - Default: FALSE
@@ -583,8 +577,8 @@ if (!function_exists('comment_author_twitter_profile_image')) {
  */
 if (!function_exists('get_twitter_profile_image')) {
 	function get_twitter_profile_image( $twitter_id ) {
-		if ($twitter_id) {
-			return $profile_image = TwitterProfileImage::getProfileImage($twitter_id);
+		if ( $twitter_id ) {
+			return Twitter_Profile_Image::get_profile_image($twitter_id);
 		}
 
 		return '';
