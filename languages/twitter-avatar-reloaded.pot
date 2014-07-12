@@ -2,9 +2,9 @@
 # This file is distributed under the same license as the Twitter Avatar Reloaded package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Twitter Avatar Reloaded 1.4.4\n"
+"Project-Id-Version: Twitter Avatar Reloaded 2.0\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/twitter-avatar-reloaded\n"
-"POT-Creation-Date: 2014-01-21 02:14:21+00:00\n"
+"POT-Creation-Date: 2014-07-12 07:06:56+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -12,80 +12,176 @@ msgstr ""
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 
-#: twitter-avatar-reloaded.php:108
+#: includes/libs/wp-twitter-api/lib/twitter-api-admin.php:16
+msgid "Twitter API Authentication Settings"
+msgstr ""
+
+#: includes/libs/wp-twitter-api/lib/twitter-api-admin.php:60
+msgid "Save settings"
+msgstr ""
+
+#: includes/libs/wp-twitter-api/lib/twitter-api-admin.php:63
+msgid "These details are available in"
+msgstr ""
+
+#: includes/libs/wp-twitter-api/lib/twitter-api-admin.php:64
+msgid "your Twitter dashboard"
+msgstr ""
+
+#: includes/libs/wp-twitter-api/lib/twitter-api-admin.php:90
+msgid "Connect to Twitter"
+msgstr ""
+
+#: includes/libs/wp-twitter-api/lib/twitter-api-admin.php:102
+msgid "You don't have permission to manage Twitter API settings"
+msgstr ""
+
+#: includes/libs/wp-twitter-api/lib/twitter-api-admin.php:121
+msgid "Twitter application not fully configured"
+msgstr ""
+
+#: includes/libs/wp-twitter-api/lib/twitter-api-admin.php:139
+msgid "Plugin not yet authenticated with Twitter"
+msgstr ""
+
+#: includes/libs/wp-twitter-api/lib/twitter-api-admin.php:146
+msgid "Authenticated as @%s"
+msgstr ""
+
+#: includes/libs/wp-twitter-api/lib/twitter-api-admin.php:189
+msgid "Twitter API"
+msgstr ""
+
+#: includes/libs/wp-twitter-api/lib/twitter-api-core.php:145
+msgid "Twitter application is not fully configured"
+msgstr ""
+
+#: includes/libs/wp-twitter-api/lib/twitter-api-core.php:230
+msgid "Twitter client not authenticated"
+msgstr ""
+
+#: includes/libs/wp-twitter-api/lib/twitter-api-core.php:246
+msgid "Invalid Twitter parameter"
+msgstr ""
+
+#: includes/libs/wp-twitter-api/lib/twitter-api-core.php:308
+#: includes/libs/wp-twitter-api/lib/twitter-api-core.php:320
+msgid "Twitter error #%d"
+msgstr ""
+
+#: includes/libs/wp-twitter-api/lib/twitter-api-core.php:356
+msgid "Malformed response from Twitter"
+msgstr ""
+
+#: includes/libs/wp-twitter-api/lib/twitter-api-core.php:375
+msgid "Wordpress HTTP request failure"
+msgstr ""
+
+#: includes/libs/wp-twitter-api/lib/twitter-api-core.php:410
+msgid "Invalid OAuth token"
+msgstr ""
+
+#: includes/libs/wp-twitter-api/lib/twitter-api-core.php:410
+msgid "Key required even if secret is empty"
+msgstr ""
+
+#: includes/libs/wp-twitter-api/lib/twitter-api-core.php:529
+msgid "Status %u from Twitter"
+msgstr ""
+
+#: includes/libs/wp-twitter-api/lib/twitter-api-utils.php:155
+msgid "Just now"
+msgstr ""
+
+#: includes/libs/wp-twitter-api/lib/twitter-api-utils.php:160
+msgid "%u minute ago"
+msgid_plural "%u minutes ago"
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/libs/wp-twitter-api/lib/twitter-api-utils.php:168
+msgid "About an hour ago"
+msgid_plural "About %u hours ago"
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/libs/wp-twitter-api/lib/twitter-api-utils.php:173
+msgid "Yesterday at"
+msgstr ""
+
+#. #-#-#-#-#  twitter-avatar-reloaded.pot (Twitter Avatar Reloaded 2.0)  #-#-#-#-#
+#. Plugin Name of the plugin/theme
+#: twitter-avatar-reloaded.php:101
 msgid "Twitter Avatar Reloaded"
 msgstr ""
 
-#: twitter-avatar-reloaded.php:122
+#: twitter-avatar-reloaded.php:115
 msgid "Twitter Field class"
 msgstr ""
 
-#: twitter-avatar-reloaded.php:123
+#: twitter-avatar-reloaded.php:116
 msgid "Twitter Field Label"
 msgstr ""
 
-#: twitter-avatar-reloaded.php:124
+#: twitter-avatar-reloaded.php:117
 msgid "Twitter Field html"
 msgstr ""
 
-#: twitter-avatar-reloaded.php:125
+#: twitter-avatar-reloaded.php:118
 msgid "Support for legacy themes"
 msgstr ""
 
-#: twitter-avatar-reloaded.php:137
+#: twitter-avatar-reloaded.php:130
 msgid "Twitter Username"
 msgstr ""
 
-#: twitter-avatar-reloaded.php:219 twitter-avatar-reloaded.php:265
-#: twitter-avatar-reloaded.php:413
+#: twitter-avatar-reloaded.php:213 twitter-avatar-reloaded.php:259
+#: twitter-avatar-reloaded.php:407
 msgid "Twitter"
 msgstr ""
 
-#: twitter-avatar-reloaded.php:319
+#: twitter-avatar-reloaded.php:313
 msgid "Settings"
 msgstr ""
 
-#: twitter-avatar-reloaded.php:331
+#: twitter-avatar-reloaded.php:325
 msgid "plugin"
 msgstr ""
 
-#: twitter-avatar-reloaded.php:331
+#: twitter-avatar-reloaded.php:325
 msgid "Version"
 msgstr ""
 
-#: twitter-avatar-reloaded.php:331
+#: twitter-avatar-reloaded.php:325
 msgid "by"
 msgstr ""
 
-#: twitter-avatar-reloaded.php:340
+#: twitter-avatar-reloaded.php:334
 msgid "Twitter Avatar Reloaded Settings"
 msgstr ""
 
-#: twitter-avatar-reloaded.php:350
+#: twitter-avatar-reloaded.php:344
 msgid "Save Changes"
 msgstr ""
 
-#: twitter-avatar-reloaded.php:441
+#: twitter-avatar-reloaded.php:435
 msgid "By default <code>comment-form-twitter</code> will be used"
 msgstr ""
 
-#: twitter-avatar-reloaded.php:450
+#: twitter-avatar-reloaded.php:444
 msgid "By default <code>Twitter</code> will be used"
 msgstr ""
 
-#: twitter-avatar-reloaded.php:462
+#: twitter-avatar-reloaded.php:456
 msgid "By default the html for the website field will be cloned."
 msgstr ""
 
-#: twitter-avatar-reloaded.php:467
+#: twitter-avatar-reloaded.php:461
 msgid "Enable support for legacy themes"
 msgstr ""
 
-#: twitter-avatar-reloaded.php:468
+#: twitter-avatar-reloaded.php:462
 msgid "You don't need it if your theme supports the new comment_form hook"
-msgstr ""
-#. Plugin Name of the plugin/theme
-msgid "Twitter Avatar Reloaded"
 msgstr ""
 
 #. Plugin URI of the plugin/theme
@@ -93,7 +189,9 @@ msgid "http://sudarmuthu.com/wordpress/twitter-avatar-reloaded"
 msgstr ""
 
 #. Description of the plugin/theme
-msgid "Stores Twitter username together with comments and replaces gravatar with twitter avatar."
+msgid ""
+"Stores Twitter username together with comments and replaces gravatar with "
+"twitter avatar."
 msgstr ""
 
 #. Author of the plugin/theme
