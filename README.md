@@ -4,7 +4,7 @@
 **Requires at least:** 3.8  
 **Donate Link:** http://sudarmuthu.com/if-you-wanna-thank-me  
 **Tested up to:** 3.9.1  
-**Stable tag:** 2.0  
+**Stable tag:** 2.0.1  
 
 Stores Twitter username together with comments and replaces gravatar with twitter avatar.
 

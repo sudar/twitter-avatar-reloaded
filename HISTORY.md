@@ -1,5 +1,8 @@
 ## Changelog ##
 
+### v2.0.1 (2014-07-12) (Dev time: 0.5 hours) ###
+- Fix: v2.0 release zip didn't include the files from git submodule
+
 ### v2.0 (2014-07-12) (Dev time: 3 hours) ###
 - New: Add wp-twitter-api library to use new version of Twitter API
 
